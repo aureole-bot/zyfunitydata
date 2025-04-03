@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //游戏总管理，单例模式
     public static GameManager Instance;
     
-    public GameObject currgunitem;//当前拥有的主武器
+    public GameObject currgunitem;//当前拥有的主武器，这里的主武器指的是场景中的武器。
 
     private void Awake()
     {
@@ -36,5 +36,26 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //拾取到主武器
+    public GameObject havemaingun(GameObject maingun)
+    {
+        if (currgunitem == null)
+        {
+            currgunitem = maingun;
+            return null;
+        }
+        else
+        {
+            if (currgunitem != maingun)
+            {
+                GameObject agogunitem = currgunitem;
+                currgunitem = maingun;
+                return agogunitem;
+            }
+
+            return maingun;
+        }
     }
 }

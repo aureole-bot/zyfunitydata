@@ -26,5 +26,35 @@ public class P2000 : Gun
         {
             //animator.CrossFade("Fire",0);
         }
+        
+    //     [Header("Pistol Settings")]
+    // public float range = 50f;
+    // public LayerMask hitLayers;
+    //
+    // protected override void FireWeapon()
+    // {
+    //     // 播放射击音效
+    //     // AudioManager.Instance.PlaySound("PistolShot");
+    //     
+    //     // 显示枪口火焰
+    //     if (muzzleFlash != null)
+    //     {
+    //         muzzleFlash.Play();
+    //     }
+    //     
+    //     // 射线检测射击
+    //     RaycastHit hit;
+    //     if (Physics.Raycast(muzzle.position, muzzle.forward, out hit, range, hitLayers))
+    //     {
+    //         // 对击中的目标造成伤害
+    //         Health targetHealth = hit.collider.GetComponent<Health>();
+    //         if (targetHealth != null)
+    //         {
+    //             targetHealth.TakeDamage(damage);
+    //         }
+    //         
+    //         // 可以在这里生成命中效果
+    //     }
+    // }
     }
 }

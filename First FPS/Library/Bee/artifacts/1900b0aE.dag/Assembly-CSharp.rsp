@@ -403,6 +403,7 @@
 "Assets/scripts/GunStore/P2000.cs"
 "Assets/scripts/PlayerController.cs"
 "Assets/scripts/UIManager.cs"
+"Assets/scripts/WeaponManager.cs"
 -langversion:9.0
 
 /deterministic

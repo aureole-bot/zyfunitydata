@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private bool isruning = false;
     [Tooltip("奔跑速度")] public float runSpeed = 10f;
     [Tooltip("行走速度")] public float walkSpeed = 5f;
+
+    public WeaponManager weaponmansger;
     
     public Animator animator;
     
@@ -58,7 +60,8 @@ public class PlayerController : MonoBehaviour
         velocity = Vector3.zero;//初始化角色速度为零
         moveSpeed = walkSpeed;
 
-        animator = transform.Find("Virtual Camera/gunstore/p2000").GetComponent<Animator>();
+        weaponmansger = GetComponent<WeaponManager>();
+        //animator = transform.Find("Virtual Camera/gunstore/p2000").GetComponent<Animator>();
 
     }
 
@@ -168,13 +171,15 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 isruning = true;
-                animator.SetBool("run", true);
+                weaponmansger.currgun.GetComponent<Animator>().SetBool("run",true);
+                //animator.SetBool("run", true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 isruning = false;
-                animator.SetBool("run", false);
+                weaponmansger.currgun.GetComponent<Animator>().SetBool("run",true);
+                //animator.SetBool("run", false);
             }
         
             moveSpeed = isruning ? runSpeed : walkSpeed;
@@ -186,7 +191,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            animator.CrossFade("Fire",0);
+            //Debug.Log("当前的weaponmanager是"+weaponmansger.currgun.name);
+            weaponmansger.currgun.GetComponent<Animator>().CrossFade("Fire",0);
+            //接下来要写的方法，完善枪械方法，调用，weaponmansger.currgun.Trycom();来实现射击，正好用来计算子弹数。
+            //animator.CrossFade("Fire",0);
         }
     }
     //主副武器切换
@@ -205,26 +213,34 @@ public class PlayerController : MonoBehaviour
         //     Debug.Log("鼠标向下滚动");  
         //     // 在这里添加您的逻辑，例如缩放物体等  
         // }  
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            gameObject.transform.Find("Virtual Camera/gunstore/p2000").gameObject.SetActive(true);
-            gameObject.transform.Find("Virtual Camera/gunstore/ak47").gameObject.SetActive(false);
-            gameObject.transform.Find("Virtual Camera/gunstore/m4a4").gameObject.SetActive(false);
-            animator = gameObject.transform.Find("Virtual Camera/gunstore/p2000").GetComponent<Animator>();
-        }
-
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     gameObject.transform.Find("Virtual Camera/gunstore/p2000").gameObject.SetActive(true);
+        //     gameObject.transform.Find("Virtual Camera/gunstore/ak47").gameObject.SetActive(false);
+        //     gameObject.transform.Find("Virtual Camera/gunstore/m4a4").gameObject.SetActive(false);
+        //     animator = gameObject.transform.Find("Virtual Camera/gunstore/p2000").GetComponent<Animator>();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     if (GameManager.Instance.currgunitem != null)
+        //     {
+        //         gameObject.transform.Find("Virtual Camera/gunstore/p2000").gameObject.SetActive(false);
+        //         gameObject.transform.Find("Virtual Camera/gunstore/ak47").gameObject.SetActive(false);
+        //         gameObject.transform.Find("Virtual Camera/gunstore/m4a4").gameObject.SetActive(false);
+        //         gameObject.transform.Find($"Virtual Camera/gunstore/{GameManager.Instance.currgunitem.name}")
+        //             .gameObject.SetActive(true);
+        //         animator = gameObject.transform.Find($"Virtual Camera/gunstore/{GameManager.Instance.currgunitem.name}")
+        //             .GetComponent<Animator>();
+        //     }
+        // }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (GameManager.Instance.currgunitem != null)
-            {
-                gameObject.transform.Find("Virtual Camera/gunstore/p2000").gameObject.SetActive(false);
-                gameObject.transform.Find("Virtual Camera/gunstore/ak47").gameObject.SetActive(false);
-                gameObject.transform.Find("Virtual Camera/gunstore/m4a4").gameObject.SetActive(false);
-                gameObject.transform.Find($"Virtual Camera/gunstore/{GameManager.Instance.currgunitem.name}")
-                    .gameObject.SetActive(true);
-                animator = gameObject.transform.Find($"Virtual Camera/gunstore/{GameManager.Instance.currgunitem.name}")
-                    .GetComponent<Animator>();
-            }
+            weaponmansger.CuttingGun(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            weaponmansger.CuttingGun(2);
         }
     }
     //换弹
@@ -232,7 +248,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            animator.CrossFade("ReloadNoAmmo", 0);
+            weaponmansger.currgun.GetComponent<Animator>().CrossFade("ReloadNoAmmo", 0);
+            //animator.CrossFade("ReloadNoAmmo", 0);
         }
     }
 }

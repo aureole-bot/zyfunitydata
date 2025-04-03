@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 253307520}
   - component: {fileID: 253307524}
   - component: {fileID: 253307525}
+  - component: {fileID: 253307526}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -630,7 +631,22 @@ MonoBehaviour:
   jumpHeight: 1
   runSpeed: 10
   walkSpeed: 5
+  weaponmansger: {fileID: 0}
   animator: {fileID: 0}
+--- !u!114 &253307526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253307517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d82c7d90f6cac4487d73f336071d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currgun: {fileID: 7330234429576847850}
+  currmaingun: {fileID: 0}
 --- !u!1 &270994245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,7 +5527,6 @@ GameObject:
   - component: {fileID: 2064134914}
   - component: {fileID: 2064134913}
   - component: {fileID: 2064134912}
-  - component: {fileID: 2064134916}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5603,20 +5618,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2064134916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064134911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f368b766d0e11f40ad59f4f8dd286bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curr: {fileID: 522830310}
-  max: {fileID: 630190788}
 --- !u!1 &2074431983
 GameObject:
   m_ObjectHideFlags: 0
